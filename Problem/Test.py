@@ -1,3 +1,3 @@
-for i in range(10):
-    if i % 2 == 0: continue
-    print(i)
+for i in range(1000):
+    r = round(i * 0.15)
+    print(i - r * 2)
