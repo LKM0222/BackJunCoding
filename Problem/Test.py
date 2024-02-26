@@ -1,14 +1,9 @@
-import sys
+n = 1200
+count = 0
 
-for _ in range(3):
-    sumis = 0
-    n = int(input())
-    for i in range(n):
-        sumis += int(sys.stdin.readline().rstrip())
-        
-    if sumis == 0:
-        print(0)
-    elif sumis > 0:
-        print('+')
-    else:
-        print('-')
+coin_types = [500,100,50,10]
+
+for coin in coin_types:
+    count += n // coin
+    n %= coin
+print(count)
