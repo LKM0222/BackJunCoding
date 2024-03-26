@@ -30,6 +30,8 @@ for i in range(n): #입력 받기
             now[2] = dp[i-1][1] + z
             
         dp[i] = now
+        
+    print(dp)
     
         
 print(min(dp[n-1]))
