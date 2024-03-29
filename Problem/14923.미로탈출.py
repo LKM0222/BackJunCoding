@@ -59,9 +59,6 @@ for i in range(n):
         if li[i][j] == 1: #벽이 있다면
             li[i][j] = 0 #빈칸으로 만들고
             nresult = BFS(hx - 1, hy - 1) #탐색을 한다.
-            
-        # else: #벽이 아니라면
-        #     nresult = BFS(hx - 1, hy - 1) #일단 탐색
         
         #최솟값 구해야되니깐 비교
         if result > nresult and nresult > 0:
@@ -79,9 +76,6 @@ for i in range(n):
         li = copy.deepcopy(li_copy)
 
 if result == 9999999:
-    # print("최종결과 : ", -1)
     print(-1)
 else:
-    # print("최종결과 : ",result)
     print(result)
-# print(result)

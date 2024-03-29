@@ -1,38 +1,47 @@
-li = [0,2,4,6,8,10,12,14,16,18,20]
+from collections import deque
 
-#재귀적
-
-def binary(array,target,start,end):
-    mid = (start + end) // 2 #몫만 취한다  
-    if start > end:
-        return None #못찾았다면 None반환
+def solution(rows, columns, queries):
+    answer = []
     
-    if array[mid] == target:
-        return mid #찾았다면 인덱스 반환
-    elif array[mid] < target:
-        return binary(array,target, mid + 1, end) #찾는값보다 중간값이 작다면 mid아래쪽을 버림
-    else:
-    	return binary(array,target, start, mid - 1) #크다면, mid위쪽을 버림.
+    #2차원 배열 선언
+    arr = [[0 for j in range(columns)] for i in range(rows)]
+    x = 1
+    for i in range(rows):
+        for j in range(columns):
+            arr[i][j] = x
+            x += 1
+    
+    #값 저장위한 배열
+    temp = []
+    
+    #돌리기
+    for temp in queries:
+        #기준점
+        x1,y1 = temp[0] - 1, temp[1] - 1
+        x2,y2 = temp[2] - 1, temp[3] - 1
         
-binary(li,7,0,len(li) - 1)    
-    
-    
- 
-#반복적
-
-start = 0
-end = len(li) - 1 #인덱스니깐 1 빼줌
-
-target = 7
-
-while start <= end:
-    mid = (start + end) // 2
-    
-    if li[mid] == target:
-        break #찾았다면 바로 반복문 탈출. mid의 변경 없음.
-    elif li[mid] < target:
-        start = mid + 1 
-    else:
-        end = mid - 1
+        print("x1,y1",x1,y1, " x2,y2 " ,x2,y2)
+        print(x2-x1)
+        #큐에 순서대로 넣기
+        queue= deque()
         
-print(li[mid])
+        #왼쪽
+        for i in range(x2-x1):
+            queue.append(arr[y1][x1+i])
+        #아래
+        for i in range(y2-y1):
+            queue.append(arr[x2][y1+i])
+        #오른쪽
+        for i in range(x2 - x1):
+            queue.append(arr[y1][x2-i])
+        #위
+        for i in range(y2 - y1):
+            queue.append(arr[y2-i][x2])
+        
+        print(queue)
+        
+            
+
+    return answer
+
+print(solution(6,6,[[2,2,5,4]]))

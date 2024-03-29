@@ -34,4 +34,3 @@ def bfs(x,y):
     return li[n-1][m-1]
 
 print(bfs(0,0))
-
